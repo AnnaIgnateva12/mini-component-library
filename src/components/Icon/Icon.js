@@ -14,7 +14,7 @@ const icons = {
   'chevron-down': ChevronDown,
 };
 
-const Icon = ({ id, size, strokeWidth = 1, ...delegated }) => {
+const Icon = ({ id, size, strokeWidth = 1, display, ...delegated }) => {
   const Component = icons[id];
 
   if (!Component) {
@@ -26,6 +26,7 @@ const Icon = ({ id, size, strokeWidth = 1, ...delegated }) => {
       style={{
         '--size': size + 'px',
         '--stroke-width': strokeWidth + 'px',
+        '--display': display ? display : 'block',
       }}
       {...delegated}
     >
@@ -35,6 +36,7 @@ const Icon = ({ id, size, strokeWidth = 1, ...delegated }) => {
 };
 
 const Wrapper = styled.div`
+  display: var(--display);
   width: var(--size);
   height: var(--size);
 
@@ -51,7 +53,7 @@ const Wrapper = styled.div`
     is coming from.
   */
   & > svg {
-    display: block;
+    display: var(--display);
     stroke-width: var(--stroke-width);
   }
 `;
